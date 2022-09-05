@@ -4,8 +4,18 @@ import User from '../models/User'
 
 const secret = 'test'
 
-// sign up function
-export const SignUp = async (req, res) => {
+// fetch all users
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+        res.status(200).json(users)
+    } catch (error) {
+        res.status(404).json({ message: "Something went wrong" })
+    }
+}
+
+// sign up
+export const signUp = async (req, res) => {
     const { firstName, lastName, email, password } = req.body
     try {
         const registeredUser = await User.findOne({ email })
@@ -52,8 +62,8 @@ export const SignUp = async (req, res) => {
     }
 }
 
-// sign in function
-export const SignIn = async (req, res) => {
+// sign in
+export const signIn = async (req, res) => {
     const { email, password } = req.body
 
     try {
@@ -85,4 +95,5 @@ export const SignIn = async (req, res) => {
         console.log(error)
     }
 }
+
 

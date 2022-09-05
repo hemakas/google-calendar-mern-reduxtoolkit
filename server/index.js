@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import cors from "cors"
 import morgan from "morgan"
 import userRoutes from "./routes/userRoutes"
+import eventRoutes from './routes/eventRoutes'
 
 // mongodb connection url
 const DB_URL = "mongodb+srv://LJ1Xic5f1sUSER:A1dCZrLJ1Xic5f1s@cluster0.sgwatzg.mongodb.net/?retryWrites=true&w=majority"
@@ -16,8 +17,11 @@ app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
-// routes (localhost:5000/users/signup)
+// routes (localhost:5000/users) ===================== routes 
 app.use('/users', userRoutes)
+
+// routes (localhost:5000/events) ===================== routes 
+app.use('/events', eventRoutes)
 
 // connect to mongo db
 mongoose
